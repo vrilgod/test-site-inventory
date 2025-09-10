@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        body {
+            background-color: black;
+            color: #f0f0f0;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-card {
+            background-color: #222;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            width: 300px;
+        }
+        .key-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .padlock {
+            margin-left: 5px;
+        }
+        .messages {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .encrypted {
+            color: #888;
+        }
+        .decrypted {
+            color: #f0f0f0;
+        }
+        .input-container {
+            display: flex;
+        }
+        .message-input {
+            flex: 1;
+            margin-right: 5px;
+        }
+        button {
+            background-color: #444;
+            color: #f0f0f0;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-card">
+        <div class="key-input">
+            <input type="text" id="keyInput" placeholder="Encryption key" />
+            <span class="padlock" id="padlockIcon">🔒</span>
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="input-container">
+            <input type="text" id="messageInput" class="message-input" placeholder="Type a message..." />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+    <script>
+        const keyInput = document.getElementById('keyInput');
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const padlockIcon = document.getElementById('padlockIcon');
+
+        // WebSocket setup
+        const socket = new WebSocket('ws://localhost:3000/ws');
+
+        // Send message function
+        sendButton.onclick = async () => {
+            const message = messageInput.value;
+            // Encrypt and send message logic here
+        };
+
+        // Receive message function
+        socket.onmessage = (event) => {
+            const messageData = JSON.parse(event.data);
+            // Decrypt and display message logic here
+        };
+
+        // Key input handling
+        keyInput.oninput = () => {
+            // Key derivation and decryption logic here
+        };
+    </script>
+</body>
+</html>
